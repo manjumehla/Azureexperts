@@ -10,8 +10,8 @@
         "ipv6Enabled": false,
         "subnetCount": 1,
         "subnet0_name": "Subnet1",
-		"subnet0_addressRange": "172.19.1.0/24",
-	    "ddosProtectionPlanEnabled": false,
+        "subnet0_addressRange": "172.19.1.0/24",
+        "ddosProtectionPlanEnabled": false,
         "firewallEnabled": false ,
         "bastionEnabled": false
     },
