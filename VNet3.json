@@ -1,0 +1,46 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "variables": {
+        "location": "westus3",
+        "extendedLocation": {},
+        "virtualNetworkName": "VNet3",
+        "resourceGroup": "WestUS3-RG1",
+        "addressSpaces":  "172.17.0.0/16",
+        "ipv6Enabled": false,
+        "subnetCount": 1,
+        "subnet0_name": "Subnet1",
+		"subnet0_addressRange": "172.17.1.0/24",
+	    "ddosProtectionPlanEnabled": false,
+        "firewallEnabled": false ,
+        "bastionEnabled": false
+    },
+    
+    "resources": [
+        {
+            "name": "[variables('virtualNetworkName')]",
+            "type": "Microsoft.Network/VirtualNetworks",
+            "apiVersion": "2021-01-01",
+            "location": "[variables('location')]",
+            "extendedLocation": "[if(empty(variables('extendedLocation')), json('null'), variables('extendedLocation'))]",
+            "dependsOn": [],
+            "tags": {},
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+					"[variables('addressSpaces')]"
+					]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('subnet0_name')]",
+                        "properties": {
+                            "addressPrefix": "[variables('subnet0_addressRange')]"
+                        }
+                    }				
+                ],
+                "enableDdosProtection": "[variables('ddosProtectionPlanEnabled')]"
+            }
+        }
+    ]
+}
